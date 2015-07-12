@@ -24,7 +24,11 @@ add_library(circuitsim SHARED
     include/circuitsim/simulation.h
     include/circuitsim/utils.h
     src/component.h
-    src/component.cpp)
+    src/component.cpp
+    src/voltage_source.cpp
+    src/voltage_source.h
+    src/current_source.cpp
+    src/current_source.h)
 
 set_target_properties(circuitsim PROPERTIES VERSION ${circuitsim_VERSION} SOVERSION ${circuitsim_MAJOR_VERSION} )
 

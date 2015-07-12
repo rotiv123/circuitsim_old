@@ -8,7 +8,7 @@
 
 
 simulation::simulation()
- : components_{}
+    : components_{}
 {
 }
 
@@ -26,9 +26,12 @@ void simulation::load(const char* circuit)
         auto c = *t.begin();
         switch (c)
         {
-            case 'R':
-                this->components_.emplace_back(resistor{t, p});
-                break;
+        case 'R':
+            this->components_.emplace_back(resistor{t, p});
+            break;
+        case 'V':
+            this->components_.emplace_back(voltage_source{t, p});
+            break;
         }
         t = p.advance();
     }
