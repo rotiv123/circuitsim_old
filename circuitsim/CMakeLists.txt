@@ -1,11 +1,32 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.0)
 project(circuitsim)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(circuitsim_MAJOR_VERSION 0)
+set(circuitsim_MINOR_VERSION 1)
+set(circuitsim_PATCH_VERSION 0)
+set(circuitsim_VERSION ${circuitsim_MAJOR_VERSION}.${circuitsim_MINOR_VERSION}.${circuitsim_PATCH_VERSION})
 
-set (PROJECT_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
-set (PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
+configure_file ("config.h.in" "${PROJECT_BINARY_DIR}/config.h")
+include_directories("${PROJECT_BINARY_DIR}")
 
-#include_directories("${PROJECT_INCLUDE_DIR}")
+add_library(circuitsim SHARED
+    src/circuitsim.cpp
+    src/simulation.cpp
+    src/simulation.h
+    include/circuitsim.h
+    include/circuitsim++.h
+    src/parser.cpp
+    src/parser.h
+    src/token.h
+    src/token.cpp
+    src/resistor.cpp
+    src/resistor.h
+    include/circuitsim/simulation.h
+    include/circuitsim/utils.h
+    src/component.h
+    src/component.cpp)
 
-add_library(${PROJECT_NAME} SHARED src/circuitsim.cpp)
+set_target_properties(circuitsim PROPERTIES VERSION ${circuitsim_VERSION} SOVERSION ${circuitsim_MAJOR_VERSION} )
+
+install (TARGETS circuitsim DESTINATION lib)
+install (DIRECTORY include/ DESTINATION include)

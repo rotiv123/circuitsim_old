@@ -1,10 +1,12 @@
 #include <iostream>
 
-#include "circuitsim.h"
+#include "circuitsim++.h"
 
-using namespace std;
+int main()
+{
+    circuitsim::simulation sim;
 
-int main() {
-    cout << "Olá, World! " << circuitsim_version() << endl;
-    return 0;
+    sim.load("Vs 1 0 Rload 1 0 100");
+
+    std::cout << "Olá, World! " << circuitsim::version() << std::endl;
 }
