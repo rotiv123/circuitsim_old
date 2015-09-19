@@ -13,7 +13,7 @@ public:
     typedef typename std::string::const_iterator const_iterator;
 
     token(const_iterator begin, const_iterator end)
-        : begin_{begin}, end_{end}
+            : begin_{begin}, end_{end}
     {
     }
 

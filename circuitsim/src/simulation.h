@@ -11,15 +11,16 @@
 #include "circuitsim/simulation.h"
 #include "component.h"
 
-class simulation : public circuitsim::ISimulation
+class simulation final : public circuitsim::ISimulation
 {
 public:
     simulation();
-    virtual ~simulation();
 
-    virtual void load(const char* circuit) override;
+    ~simulation();
 
-    void step();
+    void load(const char* circuit) noexcept override;
+
+    void step() noexcept override;
 
 private:
     std::vector<component> components_;

@@ -13,6 +13,7 @@ class parser final
 {
 public:
     parser(const std::string& circuit);
+
     ~parser();
 
     token advance();

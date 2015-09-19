@@ -16,72 +16,72 @@
 namespace circuitsim
 {
 
-template<typename F, typename... Args>
-void call(F&& f, Args&&... args)
-{
-    f(std::forward<Args>(args)...);
-
-    if(circuitsim_last_error()[0])
+    template<typename F, typename... Args>
+    void call(F&& f, Args&& ... args)
     {
-        throw std::logic_error(circuitsim_last_error());
-    }
-}
+        f(std::forward<Args>(args)...);
 
-template<typename F, typename... Args>
-typename std::result_of<F&&(Args&&...)>::type callr(F&& f, Args&&... args)
-{
-    auto const& result = f(std::forward<Args>(args)...);
-
-    if(circuitsim_last_error()[0])
-    {
-        throw std::logic_error(circuitsim_last_error());
-    }
-
-    return result;
-}
-
-template<typename I, int IID>
-struct handle final
-{
-    handle()
-        : impl_(static_cast<I*>(circuitsim_new(IID)))
-    {
-        if(!this->impl_)
+        if (circuitsim_last_error()[0])
         {
             throw std::logic_error(circuitsim_last_error());
         }
     }
 
-    ~handle()
+    template<typename F, typename... Args>
+    typename std::result_of<F&&(Args&& ...)>::type callr(F&& f, Args&& ... args)
     {
-        circuitsim_delete(IID, static_cast<void*>(this->impl_));
+        auto const& result = f(std::forward<Args>(args)...);
+
+        if (circuitsim_last_error()[0])
+        {
+            throw std::logic_error(circuitsim_last_error());
+        }
+
+        return result;
     }
 
-    handle(handle&& other)
-     : impl_{other.impl_}
+    template<typename I, int IID>
+    struct handle final
     {
-    }
+        handle()
+                : impl_(static_cast<I*>(circuitsim_new(IID)))
+        {
+            if (!this->impl_)
+            {
+                throw std::logic_error(circuitsim_last_error());
+            }
+        }
 
-    handle& operator= ( handle&& other)
-    {
-        circuitsim_delete(IID, static_cast<void*>(this->impl_));
+        ~handle()
+        {
+            circuitsim_delete(IID, static_cast<void*>(this->impl_));
+        }
 
-        this->impl_ = other.impl_;
-        return *this;
-    }
+        handle(handle&& other)
+                : impl_{other.impl_}
+        {
+        }
 
-    handle(const handle&) =delete;
+        handle& operator=(handle&& other)
+        {
+            circuitsim_delete(IID, static_cast<void*>(this->impl_));
 
-    handle& operator= (const handle&) =delete;
+            this->impl_ = other.impl_;
+            return *this;
+        }
 
-    I& get() const
-    {
-        return *this->impl_;
-    }
+        handle(const handle&) = delete;
 
-private:
-    I* impl_;
-};
+        handle& operator=(const handle&) = delete;
+
+        I& get() const
+        {
+            return *this->impl_;
+        }
+
+    private:
+        I* impl_;
+    };
 
 }
 

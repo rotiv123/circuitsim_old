@@ -11,12 +11,12 @@
 namespace circuitsim
 {
 
-class simulation;
+    class simulation;
 
-const char* version()
-{
-    return circuitsim_version();
-}
+    const char* version()
+    {
+        return circuitsim_version();
+    }
 
 }
 

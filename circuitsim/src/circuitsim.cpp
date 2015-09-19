@@ -3,13 +3,13 @@
 //
 
 #include <string>
-#include <exception>
 
 #include "config.h"
+#include "utils.h"
 #include "circuitsim.h"
 #include "simulation.h"
 
-static std::string& last_error() noexcept
+std::string& last_error() noexcept
 {
     thread_local std::string e{""};
     return e;
@@ -22,41 +22,36 @@ const char* circuitsim_version()
 
 void* circuitsim_new(int id)
 {
-    try
-    {
-        last_error() = "";
-        switch(id)
-        {
-        case SIMULATION_IID:
-            return static_cast<void*>(new simulation{});
-        default:
-            return nullptr;
-        }
-    }
-    catch (const std::exception& e)
-    {
-        last_error() = e.what();
-        return nullptr;
-    }
+    void* result = nullptr;
+    no_throw([&]()
+             {
+                 switch (id)
+                 {
+                     case SIMULATION_IID:
+                         result = static_cast<void*>(new simulation{});
+                         break;
+                     default:
+                         result = nullptr;
+                         break;
+                 }
+             });
+
+    return result;
 }
 
 void circuitsim_delete(int id, void* sim)
 {
-    try
-    {
-        last_error() = "";
-        switch(id)
-        {
-        case SIMULATION_IID:
-            delete static_cast<simulation*>(sim);
-        default:
-            return;
-        }
-    }
-    catch (const std::exception& e)
-    {
-        last_error() = e.what();
-    }
+    no_throw([=]()
+             {
+                 switch (id)
+                 {
+                     case SIMULATION_IID:
+                         delete static_cast<simulation*>(sim);
+                         break;
+                     default:
+                         break;
+                 }
+             });
 }
 
 const char* circuitsim_last_error()
@@ -67,24 +62,20 @@ const char* circuitsim_last_error()
 
 simulation_t* circuitsim_simulation_new()
 {
-    return reinterpret_cast<simulation_t*>(circuitsim_new(SIMULATION_IID));
+    return static_cast<simulation_t*>(circuitsim_new(SIMULATION_IID));
 }
 
-
-void circuitsim_simulation_load(simulation_t* self, const char *circuit)
+void circuitsim_simulation_load(simulation_t* self, const char* circuit)
 {
-    try
-    {
-        reinterpret_cast<simulation*>(self)->load(circuit);
-    }
-    catch (const std::exception& e)
-    {
-        last_error() = e.what();
-    }
+    reinterpret_cast<simulation*>(self)->load(circuit);
 }
 
+void circuitsim_simulation_step(simulation_t* self)
+{
+    reinterpret_cast<simulation*>(self)->step();
+}
 
 void circuitsim_simulation_delete(simulation_t* self)
 {
-    circuitsim_delete(SIMULATION_IID, reinterpret_cast<void*>(self));
+    circuitsim_delete(SIMULATION_IID, static_cast<void*>(self));
 }

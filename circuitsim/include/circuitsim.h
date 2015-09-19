@@ -17,7 +17,7 @@ const char* circuitsim_version();
 
 void* circuitsim_new(int);
 
-void circuitsim_delete(int, void *);
+void circuitsim_delete(int, void*);
 
 /******************************************************************************/
 /*   simulation                                                               */
@@ -28,6 +28,8 @@ struct simulation_t;
 simulation_t* circuitsim_simulation_new();
 
 void circuitsim_simulation_load(simulation_t* self, const char* circuit);
+
+void circuitsim_simulation_step(simulation_t* self);
 
 void circuitsim_simulation_delete(simulation_t*);
 

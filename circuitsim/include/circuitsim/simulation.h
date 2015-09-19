@@ -11,32 +11,44 @@
 namespace circuitsim
 {
 
-struct ISimulation
-{
-    virtual ~ISimulation(){}
-
-    virtual void load(const char* circuit) =0;
-};
-
-class simulation : public ISimulation
-{
-public:
-    simulation() : pimpl_{}
-    { }
-
-    virtual ~simulation()
-    { }
-
-    virtual void load(const char *circuit) override
+    struct ISimulation
     {
-        call([=]()
+        virtual ~ISimulation()
+        { }
+
+        virtual void load(const char* circuit) noexcept =0;
+
+        virtual void step() noexcept =0;
+    };
+
+    class simulation final
+    {
+    public:
+        simulation() : pimpl_{}
+        { }
+
+        ~simulation()
+        { }
+
+        void load(const char* circuit)
         {
-            this->pimpl_.get().load(circuit);
-        });
-    }
-private:
-    handle<ISimulation, SIMULATION_IID> pimpl_;
-};
+            call([=]()
+                 {
+                     this->pimpl_.get().load(circuit);
+                 });
+        }
+
+        void step()
+        {
+            call([=]()
+                 {
+                     this->pimpl_.get().step();
+                 });
+        }
+
+    private:
+        handle<ISimulation, SIMULATION_IID> pimpl_;
+    };
 
 
 }

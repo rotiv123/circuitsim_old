@@ -13,7 +13,9 @@ class component final
 {
 public:
     component(resistor&& r) noexcept;
+
     component(voltage_source&& v) noexcept;
+
     component(current_source&& i) noexcept;
 
     component(const component& other);
@@ -29,24 +31,27 @@ public:
     template<typename Visitor>
     void visit(const Visitor& v)
     {
-        switch(this->type_)
+        switch (this->type_)
         {
-        case R:
-            v.handle(this->r_);
-            break;
-        case V:
-            v.handle(this->v_);
-            break;
-        case I:
-            v.handle(this->i_);
-            break;
-        default:
-            break;
+            case R:
+                v.handle(this->r_);
+                break;
+            case V:
+                v.handle(this->v_);
+                break;
+            case I:
+                v.handle(this->i_);
+                break;
+            default:
+                break;
         }
     }
 
 private:
-    enum {NIL, R, V, I} type_;
+    enum
+    {
+        NIL, R, V, I
+    } type_;
     union
     {
         int nil_;
