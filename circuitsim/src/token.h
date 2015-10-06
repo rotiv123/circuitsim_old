@@ -5,6 +5,7 @@
 #ifndef CIRCUITSIM_TOKEN_H
 #define CIRCUITSIM_TOKEN_H
 
+#include <cassert>
 #include <string>
 
 class token
@@ -15,12 +16,25 @@ public:
     token(const_iterator begin, const_iterator end)
             : begin_{begin}, end_{end}
     {
+        assert(this->begin_ <= this->end_);
     }
+
+//    token(std::string&& str)
+//        : str_{std::move(str)}
+//    {
+//    }
+
 
     bool empty() const
     {
         return this->begin_ == this->end_;
+//        return this->str_.empty();
     }
+
+//    const std::string& str() const
+//    {
+//        return this->str_;
+//    }
 
     const_iterator begin() const
     {
@@ -40,6 +54,7 @@ public:
 private:
     const_iterator begin_;
     const_iterator end_;
+//    std::string str_;
 };
 
 std::string to_string(const token& t);

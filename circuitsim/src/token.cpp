@@ -7,4 +7,5 @@
 std::string to_string(const token& t)
 {
     return std::string{t.begin(), t.end()};
+//    return t.str();
 }

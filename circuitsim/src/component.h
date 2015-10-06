@@ -28,19 +28,23 @@ public:
 
     component& operator=(component&& other) noexcept;
 
+    unsigned max_node() const;
+
+    void stamp(matrix& mat, unsigned n) const;
+
     template<typename Visitor>
-    void visit(const Visitor& v)
+    void visit(Visitor& v) const
     {
         switch (this->type_)
         {
             case R:
-                v.handle(this->r_);
+                v(this->r_);
                 break;
             case V:
-                v.handle(this->v_);
+                v(this->v_);
                 break;
             case I:
-                v.handle(this->i_);
+                v(this->i_);
                 break;
             default:
                 break;

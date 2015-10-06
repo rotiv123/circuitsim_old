@@ -12,15 +12,15 @@
 class parser final
 {
 public:
-    parser(const std::string& circuit);
+    parser(const char* circuit);
 
     ~parser();
 
     token advance();
 
 private:
+    const std::string str_;
     std::string::const_iterator pos_;
-    std::string::const_iterator end_;
 };
 
 

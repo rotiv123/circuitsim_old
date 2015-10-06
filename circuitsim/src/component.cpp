@@ -103,3 +103,64 @@ void component::reset()
             break;
     }
 }
+
+unsigned component::max_node() const
+{
+    struct max_node_visitor
+    {
+        unsigned max;
+
+        max_node_visitor()
+                : max(0)
+        { }
+
+        void operator()(const resistor& r)
+        {
+            this->max = r.max_node();
+        }
+
+        void operator()(const voltage_source& v)
+        {
+            this->max = v.max_node();
+        }
+
+        void operator()(const current_source& i)
+        {
+            this->max = i.max_node();
+        }
+    } v;
+
+    this->visit(v);
+
+    return v.max;
+}
+
+void component::stamp(matrix& mat, unsigned n) const
+{
+    struct stamp_visitor
+    {
+        matrix& mat_;
+        unsigned n_;
+
+        stamp_visitor(matrix& mat, unsigned n)
+                : mat_(mat), n_(n)
+        { }
+
+        void operator()(const resistor& r)
+        {
+            r.stamp(this->mat_, this->n_);
+        }
+
+        void operator()(const voltage_source& v)
+        {
+            v.stamp(this->mat_, this->n_);
+        }
+
+        void operator()(const current_source& i)
+        {
+            i.stamp(this->mat_, this->n_);
+        }
+    } v{mat, n};
+
+    this->visit(v);
+}

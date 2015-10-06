@@ -70,9 +70,9 @@ void circuitsim_simulation_load(simulation_t* self, const char* circuit)
     reinterpret_cast<simulation*>(self)->load(circuit);
 }
 
-void circuitsim_simulation_step(simulation_t* self)
+void circuitsim_simulation_dc_solve(simulation_t* self, circuitsim_simulation_cb cb)
 {
-    reinterpret_cast<simulation*>(self)->step();
+    reinterpret_cast<simulation*>(self)->dc_solve(cb);
 }
 
 void circuitsim_simulation_delete(simulation_t* self)

@@ -6,6 +6,7 @@
 #define CIRCUITSIM_ISIMULATION_H
 
 
+#include "circuitsim.h"
 #include "utils.h"
 
 namespace circuitsim
@@ -16,9 +17,9 @@ namespace circuitsim
         virtual ~ISimulation()
         { }
 
-        virtual void load(const char* circuit) noexcept =0;
+        virtual void load(const char* circuit) noexcept = 0;
 
-        virtual void step() noexcept =0;
+        virtual void dc_solve(circuitsim_simulation_cb cb) noexcept = 0;
     };
 
     class simulation final
@@ -38,11 +39,11 @@ namespace circuitsim
                  });
         }
 
-        void step()
+        void dc_solve(circuitsim_simulation_cb cb)
         {
             call([=]()
                  {
-                     this->pimpl_.get().step();
+                     this->pimpl_.get().dc_solve(cb);
                  });
         }
 

@@ -15,7 +15,6 @@
 
 namespace circuitsim
 {
-
     template<typename F, typename... Args>
     void call(F&& f, Args&& ... args)
     {

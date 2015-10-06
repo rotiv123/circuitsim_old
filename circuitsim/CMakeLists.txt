@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.0)
 project(circuitsim)
 
-set(circuitsim_MAJOR_VERSION 0)
-set(circuitsim_MINOR_VERSION 1)
+set(circuitsim_MAJOR_VERSION 1)
+set(circuitsim_MINOR_VERSION 0)
 set(circuitsim_PATCH_VERSION 0)
 set(circuitsim_VERSION ${circuitsim_MAJOR_VERSION}.${circuitsim_MINOR_VERSION}.${circuitsim_PATCH_VERSION})
 
@@ -29,7 +29,9 @@ add_library(circuitsim SHARED
         src/voltage_source.h
         src/current_source.cpp
         src/current_source.h
-        src/utils.h)
+        src/utils.h
+        src/matrix.h
+        src/matrix.cpp)
 
 set_target_properties(circuitsim PROPERTIES VERSION ${circuitsim_VERSION} SOVERSION ${circuitsim_MAJOR_VERSION})
 

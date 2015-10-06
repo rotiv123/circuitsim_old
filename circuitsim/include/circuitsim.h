@@ -23,13 +23,15 @@ void circuitsim_delete(int, void*);
 /*   simulation                                                               */
 /******************************************************************************/
 
+typedef void (*circuitsim_simulation_cb)(double* data, int n);
+
 struct simulation_t;
 
 simulation_t* circuitsim_simulation_new();
 
 void circuitsim_simulation_load(simulation_t* self, const char* circuit);
 
-void circuitsim_simulation_step(simulation_t* self);
+void circuitsim_simulation_dc_solve(simulation_t* self, circuitsim_simulation_cb cb);
 
 void circuitsim_simulation_delete(simulation_t*);
 

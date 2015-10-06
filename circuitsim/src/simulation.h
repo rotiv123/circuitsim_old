@@ -8,6 +8,7 @@
 #include <memory>
 #include <vector>
 
+#include "matrix.h"
 #include "circuitsim/simulation.h"
 #include "component.h"
 
@@ -20,10 +21,13 @@ public:
 
     void load(const char* circuit) noexcept override;
 
-    void step() noexcept override;
+    void dc_solve(circuitsim_simulation_cb cb) noexcept override;
 
 private:
+    std::vector<double> solution_;
     std::vector<component> components_;
+    std::unique_ptr<matrix> mat_;
+    unsigned n_;
 };
 
 
