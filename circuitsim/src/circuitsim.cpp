@@ -4,7 +4,7 @@
 
 #include <string>
 
-#include "config.h"
+//#include "config.h"
 #include "utils.h"
 #include "circuitsim.h"
 #include "simulation.h"
@@ -17,7 +17,7 @@ std::string& last_error() noexcept
 
 const char* circuitsim_version()
 {
-    return circuitsim_VERSION;
+	return "1.0.0";// circuitsim_VERSION;
 }
 
 void* circuitsim_new(int id)

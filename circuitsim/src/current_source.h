@@ -7,6 +7,7 @@
 
 
 #include <string>
+#include <algorithm>
 
 #include "matrix.h"
 #include "token.h"

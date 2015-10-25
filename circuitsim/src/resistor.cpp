@@ -2,6 +2,8 @@
 // Created by vitor on 05-07-2015.
 //
 
+#include <cstdlib>
+
 #include "resistor.h"
 
 
@@ -12,9 +14,9 @@ resistor::resistor(const token& id, parser& p)
       value_{0.0}
 {
     id_ = to_string(id);
-    n1_ = (unsigned) std::stoi(to_string(p.advance()));
-    n2_ = (unsigned) std::stoi(to_string(p.advance()));
-    value_ = std::stod(to_string(p.advance()));
+    n1_ = (unsigned) std::atoi(to_string(p.advance()).c_str());
+    n2_ = (unsigned) std::atoi(to_string(p.advance()).c_str());
+    value_ = std::atof(to_string(p.advance()).c_str());
 }
 
 void resistor::stamp(matrix& mat, unsigned) const

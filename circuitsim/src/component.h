@@ -56,6 +56,10 @@ private:
     {
         NIL, R, V, I
     } type_;
+#ifdef _MSC_VER
+#pragma warning( push )
+#pragma warning( disable : 4624)
+#endif
     union
     {
         int nil_;
@@ -63,7 +67,9 @@ private:
         voltage_source v_;
         current_source i_;
     };
-
+#ifdef _MSC_VER
+#pragma warning( pop )
+#endif
     void reset();
 };
 
