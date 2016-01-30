@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CircuitSim", "CircuitSim\CircuitSim.vcxitems", "{45D41ACC-2C3C-43D2-BC10-02AA73FFC7C7}"
 EndProject
@@ -9,9 +9,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CircuitSim.UW", "CircuitSim
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CircuitSim.Android", "CircuitSim.Android\CircuitSim.Android.vcxproj", "{AF032893-1428-40C2-874F-50C0A5F791D3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CircuitSimWin32", "CircuitSimWin32\CircuitSimWin32.vcxproj", "{1C5CE0FE-0429-4E51-9311-044C3CC8D3A9}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CircuitSim\CircuitSim.vcxitems*{af032893-1428-40c2-874f-50c0a5f791d3}*SharedItemsImports = 4
+		CircuitSim\CircuitSim.vcxitems*{1c5ce0fe-0429-4e51-9311-044c3cc8d3a9}*SharedItemsImports = 4
 		CircuitSim\CircuitSim.vcxitems*{e310453e-aeb2-49b9-aad8-7f2c28fe2ec4}*SharedItemsImports = 4
 		CircuitSim\CircuitSim.vcxitems*{45d41acc-2c3c-43d2-bc10-02aa73ffc7c7}*SharedItemsImports = 9
 	EndGlobalSection
@@ -46,6 +49,16 @@ Global
 		{AF032893-1428-40C2-874F-50C0A5F791D3}.Release|x64.ActiveCfg = Release|x86
 		{AF032893-1428-40C2-874F-50C0A5F791D3}.Release|x86.ActiveCfg = Release|x86
 		{AF032893-1428-40C2-874F-50C0A5F791D3}.Release|x86.Build.0 = Release|x86
+		{1C5CE0FE-0429-4E51-9311-044C3CC8D3A9}.Debug|ARM.ActiveCfg = Debug|Win32
+		{1C5CE0FE-0429-4E51-9311-044C3CC8D3A9}.Debug|x64.ActiveCfg = Debug|x64
+		{1C5CE0FE-0429-4E51-9311-044C3CC8D3A9}.Debug|x64.Build.0 = Debug|x64
+		{1C5CE0FE-0429-4E51-9311-044C3CC8D3A9}.Debug|x86.ActiveCfg = Debug|Win32
+		{1C5CE0FE-0429-4E51-9311-044C3CC8D3A9}.Debug|x86.Build.0 = Debug|Win32
+		{1C5CE0FE-0429-4E51-9311-044C3CC8D3A9}.Release|ARM.ActiveCfg = Release|Win32
+		{1C5CE0FE-0429-4E51-9311-044C3CC8D3A9}.Release|x64.ActiveCfg = Release|x64
+		{1C5CE0FE-0429-4E51-9311-044C3CC8D3A9}.Release|x64.Build.0 = Release|x64
+		{1C5CE0FE-0429-4E51-9311-044C3CC8D3A9}.Release|x86.ActiveCfg = Release|Win32
+		{1C5CE0FE-0429-4E51-9311-044C3CC8D3A9}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
