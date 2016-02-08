@@ -7,6 +7,7 @@
 
 #include <memory>
 #include <vector>
+#include <string>
 
 #include "matrix.h"
 #include "circuitsim/simulation.h"
@@ -21,7 +22,7 @@ public:
 
     void load(const char* circuit) noexcept override;
 
-    void dc_solve(circuitsim_simulation_cb cb) noexcept override;
+    void dc_solve(circuitsim_simulation_cb cb, void* state) noexcept override;
 
 private:
     std::vector<double> solution_;

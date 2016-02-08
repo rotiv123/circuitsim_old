@@ -13,12 +13,15 @@ class matrix final
 public:
 
     matrix(unsigned m, unsigned n);
-    matrix(const matrix&) =delete;
+
+    matrix(const matrix&) = delete;
+
     matrix(matrix&& other);
 
     ~matrix();
 
-    matrix& operator=(const matrix&) =delete;
+    matrix& operator=(const matrix&) = delete;
+
     matrix& operator=(matrix&& other);
 
     unsigned cols() const

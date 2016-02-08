@@ -9,7 +9,7 @@
 
 
 matrix::matrix(unsigned m, unsigned n)
-    : m_(m), n_(n), buff_(new double[m * n])
+        : m_(m), n_(n), buff_(new double[m * n])
 {
     std::memset(this->buff_, 0, sizeof(double) * m * n);
 }
@@ -20,13 +20,13 @@ matrix::~matrix()
 }
 
 matrix::matrix(matrix&& o)
-    : m_(o.m_), n_(o.n_), buff_(o.buff_)
+        : m_(o.m_), n_(o.n_), buff_(o.buff_)
 {
 }
 
 matrix& matrix::operator=(matrix&& o)
 {
-    if(this != &o)
+    if (this != &o)
     {
         this->m_ = o.m_;
         this->n_ = o.n_;
@@ -41,7 +41,7 @@ void matrix::swap_rows(unsigned a, unsigned b)
     assert(a < this->m_);
     assert(b < this->m_);
 
-    if(a == b)
+    if (a == b)
     {
         return;
     }

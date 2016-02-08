@@ -19,7 +19,7 @@ namespace circuitsim
 
         virtual void load(const char* circuit) noexcept = 0;
 
-        virtual void dc_solve(circuitsim_simulation_cb cb) noexcept = 0;
+        virtual void dc_solve(circuitsim_simulation_cb cb, void* state = nullptr) noexcept = 0;
     };
 
     class simulation final
@@ -39,11 +39,11 @@ namespace circuitsim
                  });
         }
 
-        void dc_solve(circuitsim_simulation_cb cb)
+        void dc_solve(circuitsim_simulation_cb cb, void* state = nullptr)
         {
             call([=]()
                  {
-                     this->pimpl_.get().dc_solve(cb);
+                     this->pimpl_.get().dc_solve(cb, state);
                  });
         }
 

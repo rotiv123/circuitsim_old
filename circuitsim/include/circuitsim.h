@@ -17,29 +17,29 @@
 extern "C" {
 #endif
 
-	CIRCUITSIM const char* circuitsim_last_error();
+CIRCUITSIM const char* circuitsim_last_error();
 
-	CIRCUITSIM const char* circuitsim_version();
+CIRCUITSIM const char* circuitsim_version();
 
-	CIRCUITSIM void* circuitsim_new(int);
+CIRCUITSIM void* circuitsim_new(int);
 
-	CIRCUITSIM void circuitsim_delete(int, void*);
+CIRCUITSIM void circuitsim_delete(int, void*);
 
-	/******************************************************************************/
-	/*   simulation                                                               */
-	/******************************************************************************/
+/******************************************************************************/
+/*   simulation                                                               */
+/******************************************************************************/
 
-	typedef void(*circuitsim_simulation_cb)(double* data, int n);
+typedef void(*circuitsim_simulation_cb)(void* state, double* data, int n);
 
-	struct simulation_t;
+struct simulation_t;
 
-	CIRCUITSIM simulation_t* circuitsim_simulation_new();
+CIRCUITSIM simulation_t* circuitsim_simulation_new();
 
-	CIRCUITSIM void circuitsim_simulation_load(simulation_t* self, const char* circuit);
+CIRCUITSIM void circuitsim_simulation_load(simulation_t* self, const char* circuit);
 
-	CIRCUITSIM void circuitsim_simulation_dc_solve(simulation_t* self, circuitsim_simulation_cb cb);
+CIRCUITSIM void circuitsim_simulation_dc_solve(simulation_t* self, circuitsim_simulation_cb cb, void* state);
 
-	CIRCUITSIM void circuitsim_simulation_delete(simulation_t*);
+CIRCUITSIM void circuitsim_simulation_delete(simulation_t*);
 
 #ifdef __cplusplus
 }

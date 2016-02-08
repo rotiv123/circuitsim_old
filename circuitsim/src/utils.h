@@ -34,10 +34,10 @@ void no_throw(F&& f, Args&& ... args) noexcept
 template<typename M>
 void dump(const M& mat)
 {
-    for(unsigned i = 0; i < mat.rows(); ++i)
+    for (unsigned i = 0; i < mat.rows(); ++i)
     {
         std::cout << "[" << std::setw(9) << mat.at(i, 0);
-        for(unsigned j = 1; j < mat.cols(); ++j)
+        for (unsigned j = 1; j < mat.cols(); ++j)
         {
             std::cout << ", " << std::setw(9) << mat.at(i, j);
         }
@@ -85,7 +85,7 @@ void row_echelon(M& mat)
         for (unsigned i = k + 1; i < mat.rows(); ++i)
         {
             double t = std::fabs(mat.at(i, k));
-            if(t > std::fabs(mat.at(i_max, k)))
+            if (t > std::fabs(mat.at(i_max, k)))
             {
                 i_max = i;
             }

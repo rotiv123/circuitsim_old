@@ -63,9 +63,13 @@ namespace circuitsim
 
         handle& operator=(handle&& other)
         {
-            circuitsim_delete(IID, static_cast<void*>(this->impl_));
+            if(this != &other)
+            {
+                circuitsim_delete(IID, static_cast<void*>(this->impl_));
 
-            this->impl_ = other.impl_;
+                this->impl_ = other.impl_;
+            }
+
             return *this;
         }
 

@@ -60,7 +60,7 @@ void simulation::load(const char* circuit) noexcept
              });
 }
 
-void simulation::dc_solve(circuitsim_simulation_cb cb) noexcept
+void simulation::dc_solve(circuitsim_simulation_cb cb, void* state) noexcept
 {
     no_throw([=]()
              {
@@ -81,7 +81,7 @@ void simulation::dc_solve(circuitsim_simulation_cb cb) noexcept
                      this->solution_.push_back(mat.at(i, mat.cols() - 1));
                  }
 
-                 cb(this->solution_.data(), (int)this->solution_.size());
+                 cb(state, this->solution_.data(), (int)this->solution_.size());
                  this->solution_.clear();
              });
 }
