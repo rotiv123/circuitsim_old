@@ -41,12 +41,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/fatDebug/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/fatDebug/jni" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/fatDebug/renderscript" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/androidTest/fat/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/androidTest/fat/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/androidTest/fat/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/androidTest/fat/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/androidTest/fat/debug" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/resValues/androidTest/fat/debug" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/testFatDebug/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/testFatDebug/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/testFatDebug/assets" type="java-test-resource" />
@@ -54,6 +48,12 @@
       <sourceFolder url="file://$MODULE_DIR$/src/testFatDebug/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/testFatDebug/jni" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/testFatDebug/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/androidTest/fat/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/androidTest/fat/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/androidTest/fat/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/androidTest/fat/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/androidTest/fat/debug" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/resValues/androidTest/fat/debug" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/fat/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/fat/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/fat/assets" type="java-resource" />

@@ -16,42 +16,29 @@
  */
 #include <jni.h>
 #include <vector>
-#include "circuitsim.h"
+#include "circuitsim++.h"
 
 extern "C"
 {
 
-jstring Java_com_rotiv_circuitsim_CircuitSimLib_version(JNIEnv *env)
+jstring Java_com_rotiv_circuitsim_CircuitSimLib_version(JNIEnv *env, jobject)
 {
-    return env->NewStringUTF(circuitsim_version());
+    return env->NewStringUTF(circuitsim::version());
 }
 
-jlong Java_com_rotiv_circuitsim_CircuitSimLib_simLoad(JNIEnv *env, jstring c)
+jlong Java_com_rotiv_circuitsim_CircuitSimLib_simLoad(JNIEnv *env, jobject, jstring c)
 {
-    const char *str = env->GetStringUTFChars(c, 0);
-
-    auto sim = circuitsim_simulation_new();
-    circuitsim_simulation_load(sim, str);
-
+    const char *str = env->GetStringUTFChars(c, nullptr);
+    auto sim = new circuitsim::simulation();
+    sim->load(str);
     env->ReleaseStringUTFChars(c, str);
     return reinterpret_cast<jlong>(sim);
 }
 
-jdoubleArray Java_com_rotiv_circuitsim_CircuitSimLib_simDCSolve(JNIEnv *env, jlong p)
+jdoubleArray Java_com_rotiv_circuitsim_CircuitSimLib_simDCSolve(JNIEnv *env, jobject, jlong p)
 {
-    std::vector<double> vec;
-    auto sim = reinterpret_cast<simulation_t *>(p);
-    circuitsim_simulation_dc_solve(
-            sim,
-            [](void *st, double *data, int n)
-            {
-                auto t = (std::vector<double> *) st;
-                for (auto i = 0; i < n; ++i)
-                {
-                    t->push_back(data[i]);
-                }
-            },
-            (void *) &vec);
+    auto sim = reinterpret_cast<circuitsim::simulation *>(p);
+    auto vec = sim->dc_solve();
 
     auto output = env->NewDoubleArray((int)vec.size());
     env->SetDoubleArrayRegion(output, 0, (int)vec.size(), vec.data());
@@ -59,10 +46,10 @@ jdoubleArray Java_com_rotiv_circuitsim_CircuitSimLib_simDCSolve(JNIEnv *env, jlo
     return output;
 }
 
-void Java_com_rotiv_circuitsim_CircuitSimLib_simUnload(JNIEnv *env, jlong n)
+void Java_com_rotiv_circuitsim_CircuitSimLib_simUnload(JNIEnv *env, jobject, jlong n)
 {
-    auto sim = reinterpret_cast<simulation_t *>(n);
-    circuitsim_simulation_delete(sim);
+    auto sim = reinterpret_cast<circuitsim::simulation *>(n);
+    delete sim;
 }
 
 }

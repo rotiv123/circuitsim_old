@@ -6,6 +6,7 @@
 #define CIRCUITSIM_ISIMULATION_H
 
 
+#include <vector>
 #include "circuitsim.h"
 #include "utils.h"
 
@@ -39,11 +40,21 @@ namespace circuitsim
                  });
         }
 
-        void dc_solve(circuitsim_simulation_cb cb, void* state = nullptr)
+        std::vector<double> dc_solve()
         {
-            call([=]()
+            return callr([=]()
                  {
-                     this->pimpl_.get().dc_solve(cb, state);
+                     std::vector<double> vec;
+                     this->pimpl_.get().dc_solve([](void* st, double* data, int n)
+                                                 {
+                                                     auto vec = (std::vector<double> *)st;
+                                                     for(int i = 0; i < n; ++i)
+                                                     {
+                                                         vec->push_back(data[i]);
+                                                     }
+                                                 }, &vec);
+
+                     return vec;
                  });
         }
 

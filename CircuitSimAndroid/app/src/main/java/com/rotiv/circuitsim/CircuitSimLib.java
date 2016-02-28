@@ -7,7 +7,7 @@ public class CircuitSimLib {
 
     public static native String version();
 
-    public class Simulation {
+    public static class Simulation {
         private long nativePtr = 0;
 
         public Simulation(String circuit) {

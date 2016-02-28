@@ -32,7 +32,21 @@ public class Main extends Activity {
          * function.
          */
         TextView tv = new TextView(this);
-        tv.setText(CircuitSimLib.version());
+        //tv.setText(CircuitSimLib.version());
+        //setContentView(tv);
+
+        CircuitSimLib.Simulation sim =new CircuitSimLib.Simulation("Vs1 1 0 DC 10 R1 1 2 100 R2 2 0 1000 R3 2 3 100 Vs2 3 0 DC 10 .end");
+        double[] vec = sim.dcSolve();
+        sim.unload();
+
+        String out = "";
+
+        for (int i = 0; i < vec.length; ++i)
+        {
+            out += vec[i] + "\n";
+        }
+
+        tv.setText(out);
         setContentView(tv);
     }
 }
